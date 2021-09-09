@@ -1,10 +1,11 @@
 package ejercicio1;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.FileReader;
+import java.io.BufferedReader;
 
 public class Archivo {
+	
 	public static void verificarDniInvalido(String dni_ingresado) throws DniInvalido {
 		try {
 			int dni = Integer.parseInt(dni_ingresado);

@@ -6,10 +6,10 @@ public class Persona {
 	private int dni;
 	
 	// Constructores
-	public Persona(String nombre, String apellido, String dni) {
+	public Persona(String nombre, String apellido, int dni) {
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.dni = Integer.parseInt(dni);
+		this.dni = dni;
 	}
 	
 	// Metodos de la clase
