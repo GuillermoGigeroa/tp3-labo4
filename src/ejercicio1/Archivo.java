@@ -35,7 +35,7 @@ public class Archivo {
 			while (linea != null) {
 				if (linea != "") {
 					try {
-						this.listaPersonas.add(Principal.extraerPersona(linea));
+						this.listaPersonas.add(Util.extraerPersona(linea));
 					}
 					catch (DniInvalido e) {
 						// Aca se puede escribir un mensaje cada vez que encuentre una persona con el dni mal cargado
