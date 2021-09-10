@@ -1,29 +1,46 @@
 package ejercicio1;
 
-import java.io.IOException;
-import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.TreeSet;
 
 public class Archivo {
-	
-	public static void verificarDniInvalido(String dni_ingresado) throws DniInvalido {
-		try {
-			int dni = Integer.parseInt(dni_ingresado);
-			System.out.println("DNI: "+dni);
-		}
-		catch (NumberFormatException e) {
-			System.out.println("Error de DNI ...");
-			throw new DniInvalido();
-		}
+	private TreeSet<Persona> listaPersonas;
+
+	// Constructores
+	public Archivo() {
+		this.listaPersonas = new TreeSet<Persona>();
 	}
 	
-	public static void leerLineas() {
+	public Archivo(TreeSet<Persona> listaPersonas) {
+		this.listaPersonas = listaPersonas;
+	}
+	
+	// Getters y Setters
+	protected TreeSet<Persona> getListaPersonas() {
+		return listaPersonas;
+	}
+	
+	protected void setListaPersonas(TreeSet<Persona> listaPersonas) {
+		this.listaPersonas = listaPersonas;
+	}
+	
+	// Metodos de la clase
+	public void leerLineas() {
 		try {
 			FileReader fileReader = new FileReader("Personas.txt");
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			String linea = "";
 			while (linea != null) {
-				if (linea != "") {System.out.println(linea);}
+				if (linea != "") {
+					try {
+						this.listaPersonas.add(Principal.extraerPersona(linea));
+					}
+					catch (DniInvalido e) {
+						// Aca se puede escribir un mensaje cada vez que encuentre una persona con el dni mal cargado
+					}
+				}
 				linea = bufferedReader.readLine();
 			}
 			bufferedReader.close();
