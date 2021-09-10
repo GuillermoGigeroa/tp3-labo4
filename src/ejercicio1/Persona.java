@@ -1,23 +1,74 @@
 package ejercicio1;
 
-public class Persona {
+public class Persona implements Comparable<Persona>{
 	private String nombre;
 	private String apellido;
-	private int dni;
+	private Dni dni;
 	
 	// Constructores
-	public Persona(String nombre, String apellido, String dni) {
+	public Persona() throws DniInvalido {
+		this.nombre = "No cargado";
+		this.apellido = "No cargado";
+		this.dni = new Dni("0");
+	}
+	
+	public Persona(String nombre, String apellido, String dni) throws DniInvalido {
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.dni = Integer.parseInt(dni);
+		this.dni = new Dni(dni);
 	}
 	
 	// Metodos de la clase
 	@Override
 	public String toString() {
-		return "\nPersona - Nombre: " + nombre
+		return "Nombre: " + nombre
 				+ ", Apellido: " + apellido
-				+ ", DNI: " + dni + "\n";
+				+ ", DNI: " + dni;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((apellido == null) ? 0 : apellido.hashCode());
+		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Persona other = (Persona) obj;
+		if (apellido == null) {
+			if (other.apellido != null)
+				return false;
+		} else if (!apellido.equals(other.apellido))
+			return false;
+		if (dni == null) {
+			if (other.dni != null)
+				return false;
+		} else if (!dni.equals(other.dni))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
+	}
+	
+	@Override
+	public int compareTo(Persona o) {
+		//HACER UN METODO QUE PERMITA ORDENAR EN EL TREESET ALFABETICAMENTE POR APELLIDO
+		
+		return this.dni.hashCode() == o.dni.hashCode() ? 0 : this.dni.hashCode() > o.dni.hashCode() ? 1 : -1;
+//		return this.hashCode() == o.hashCode() ? 0 : this.hashCode() > o.hashCode() ? 1 : -1;
 	}
 	
 	// Getters y Setters
@@ -34,10 +85,10 @@ public class Persona {
 		this.apellido = apellido;
 	}
 	protected int getDni() {
-		return dni;
+		return dni.getNumero();
 	}
-	protected void setDni(int dni) {
-		this.dni = dni;
+	protected void setDni(String dni) throws DniInvalido {
+		this.dni = new Dni(dni);
 	}
 	
 }
