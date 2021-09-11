@@ -65,10 +65,17 @@ public class Persona implements Comparable<Persona>{
 	
 	@Override
 	public int compareTo(Persona o) {
-		//HACER UN METODO QUE PERMITA ORDENAR EN EL TREESET ALFABETICAMENTE POR APELLIDO
-		
-		return this.dni.hashCode() == o.dni.hashCode() ? 0 : this.dni.hashCode() > o.dni.hashCode() ? 1 : -1;
-//		return this.hashCode() == o.hashCode() ? 0 : this.hashCode() > o.hashCode() ? 1 : -1;
+		//Ordenado por apellido
+		int comparacion = this.getApellido().compareTo(o.getApellido());
+		if (comparacion == 0) {
+			// Si son mismo apellido, analiza por nombre
+			comparacion = this.getNombre().compareTo(o.getNombre());
+			if (comparacion == 0) {
+				// Si son mismo nombre, analiza por dni
+				comparacion = this.getDni() > o.getDni() ? 1 : this.getDni() == o.getDni() ? 0 : -1;
+			}
+		}
+		return comparacion;
 	}
 	
 	// Getters y Setters

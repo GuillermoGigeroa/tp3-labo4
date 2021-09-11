@@ -1,6 +1,7 @@
 package ejercicio1;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.TreeSet;
@@ -35,7 +36,7 @@ public class Archivo {
 			while (linea != null) {
 				if (linea != "") {
 					try {
-						this.listaPersonas.add(Util.extraerPersona(linea));
+						this.listaPersonas.add(Util.convertirEnPersona(linea));
 					}
 					catch (DniInvalido e) {
 						// Aca se puede escribir un mensaje cada vez que encuentre una persona con el dni mal cargado
@@ -45,7 +46,11 @@ public class Archivo {
 			}
 			bufferedReader.close();
 			fileReader.close();
-		} catch (IOException e) {
+		}
+		catch (FileNotFoundException e) {
+			System.out.println("Archivo no encontrado en sistema.");
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

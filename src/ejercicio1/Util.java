@@ -1,11 +1,5 @@
 package ejercicio1;
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.TreeSet;
-
 public abstract class Util {
 	// Es una funcion para detectar guiones en la linea de texto
 	public static Boolean detectarGuion(char caracter) {
@@ -15,8 +9,8 @@ public abstract class Util {
 		return false;
 	}
 	
-	public static Persona extraerPersona(String texto) throws DniInvalido {
-		Persona persona = new Persona();
+	// Es una funcion para poder convertir a una instancia de Persona desde una linea de texto
+	public static Persona convertirEnPersona(String texto) throws DniInvalido {
 		Boolean detectoPrimerGuion = false;
 		Boolean detectoSegundoGuion = false;
 		String nombre = "";
@@ -45,20 +39,6 @@ public abstract class Util {
 				}				
 			}
 		}
-		persona.setNombre(nombre);
-		persona.setApellido(apellido);
-		persona.setDni(dni);
-		return persona;
-	}
-	
-	//No leer esto, es una prueba. Se puede hacer mejor. Disculpen
-	public static List<String> ordenarLista(TreeSet<Persona> lista) {
-		List apellidos = new LinkedList<>();
-		Iterator<Persona> it = lista.iterator();
-		while (it.hasNext()) {
-			apellidos.add(it.next().getApellido());
-		}
-		Collections.sort(apellidos);
-		return apellidos;
+		return new Persona(nombre,apellido,dni);
 	}
 }

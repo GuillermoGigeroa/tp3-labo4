@@ -1,10 +1,7 @@
 package ejercicio1;
 
 import java.util.TreeSet;
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Principal {
 	
@@ -15,12 +12,10 @@ public class Principal {
 		archivo.leerLineas();
 		listaPersonas = archivo.getListaPersonas();
 		
-		List listaNombres = Util.ordenarLista(listaPersonas);
-		
-		Iterator<String> iterator = listaNombres.iterator();
+		Iterator<Persona> iterator = listaPersonas.iterator();
 		
 		while (iterator.hasNext()) {
-			System.out.println(iterator.next());
+			System.out.println(iterator.next().toString());
 		}
 		
 	}
