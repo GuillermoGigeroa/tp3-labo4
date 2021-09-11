@@ -26,6 +26,10 @@ public class Persona implements Comparable<Persona>{
 				+ ", DNI: " + dni;
 	}
 	
+	public String exportarString() {
+		return nombre+"-"+apellido+"-"+dni.toString()+"\n";
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

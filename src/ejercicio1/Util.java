@@ -1,7 +1,10 @@
 package ejercicio1;
 
+import java.util.TreeSet;
+import java.util.Iterator;
+
 public abstract class Util {
-	// Es una funcion para poder convertir a una instancia de Persona desde una linea de texto
+	// Convierte una linea leida, en una instancia de Persona
 	public static Persona convertirEnPersona(String texto) throws DniInvalido {
 		Boolean detectoPrimerGuion = false;
 		Boolean detectoSegundoGuion = false;
@@ -32,5 +35,13 @@ public abstract class Util {
 			}
 		}
 		return new Persona(nombre,apellido,dni);
+	}
+	
+	// Muestra en consola la lista completa de Personas
+	public static void mostrarEnConsola(TreeSet<Persona> lista) {
+		Iterator<Persona> listaPersonas = lista.iterator();
+		while (listaPersonas.hasNext()) {
+			System.out.println(listaPersonas.next().toString());
+		}
 	}
 }
