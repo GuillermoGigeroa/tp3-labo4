@@ -11,8 +11,8 @@ import java.io.BufferedWriter;
 
 public class Archivo {
 	private TreeSet<Persona> listaPersonas;
-	private String rutaOrigen;
-	private String rutaDestino;
+	private final String rutaOrigen;
+	private final String rutaDestino;
 
 	// Constructores
 	public Archivo() {
@@ -68,7 +68,7 @@ public class Archivo {
 						}
 						catch (DniInvalido e) {
 							// Aca se puede escribir un mensaje cada vez que encuentre una persona con el dni mal cargado
-							//System.out.println("Se encontro un dni mal cargado.");
+							// System.out.println("Se encontro un dni mal cargado.");
 						}
 					}
 					linea = bufferedReader.readLine();
@@ -126,17 +126,8 @@ public class Archivo {
 		return rutaOrigen;
 	}
 
-	protected void setRutaOrigen(String rutaOrigen) {
-		this.rutaOrigen = rutaOrigen;
-	}
-
 	protected String getRutaDestino() {
 		return rutaDestino;
 	}
-
-	protected void setRutaDestino(String rutaDestino) {
-		this.rutaDestino = rutaDestino;
-	}
-
 
 }
