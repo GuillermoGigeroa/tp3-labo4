@@ -2,7 +2,7 @@ package ejercicio1;
 
 import java.io.IOException;
 
-public class DniInvalido extends IOException{
+public class DniInvalido extends IOException {
 
 	private static final long serialVersionUID = 1L;
 
@@ -10,5 +10,5 @@ public class DniInvalido extends IOException{
 	public String getMessage() {
 		return "Error: DNI invalido.";
 	}
-	
+
 }

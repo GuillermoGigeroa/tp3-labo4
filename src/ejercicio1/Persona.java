@@ -1,35 +1,33 @@
 package ejercicio1;
 
-public class Persona implements Comparable<Persona>{
+public class Persona implements Comparable<Persona> {
 	private String nombre;
 	private String apellido;
 	private Dni dni;
-	
+
 	// Constructores
 	public Persona() throws DniInvalido {
 		this.nombre = "No cargado";
 		this.apellido = "No cargado";
 		this.dni = new Dni("0");
 	}
-	
+
 	public Persona(String nombre, String apellido, String dni) throws DniInvalido {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = new Dni(dni);
 	}
-	
+
 	// Metodos de la clase
 	@Override
 	public String toString() {
-		return "Nombre: " + nombre
-				+ ", Apellido: " + apellido
-				+ ", DNI: " + dni;
+		return "Nombre: " + nombre + ", Apellido: " + apellido + ", DNI: " + dni;
 	}
-	
+
 	public String exportarString() {
-		return nombre+"-"+apellido+"-"+dni.toString()+"\n";
+		return nombre + "-" + apellido + "-" + dni.toString() + "\n";
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -39,7 +37,7 @@ public class Persona implements Comparable<Persona>{
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -66,10 +64,10 @@ public class Persona implements Comparable<Persona>{
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public int compareTo(Persona o) {
-		//Ordenado por apellido
+		// Ordenado por apellido
 		int comparacion = this.getApellido().compareTo(o.getApellido());
 		if (comparacion == 0) {
 			// Si son mismo apellido, analiza por nombre
@@ -81,25 +79,30 @@ public class Persona implements Comparable<Persona>{
 		}
 		return comparacion;
 	}
-	
+
 	// Getters y Setters
 	protected String getNombre() {
 		return nombre;
 	}
+
 	protected void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	protected String getApellido() {
 		return apellido;
 	}
+
 	protected void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+
 	protected int getDni() {
 		return dni.getNumero();
 	}
+
 	protected void setDni(String dni) throws DniInvalido {
 		this.dni = new Dni(dni);
 	}
-	
+
 }

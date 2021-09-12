@@ -20,13 +20,13 @@ public class Archivo {
 		this.rutaOrigen = "Personas.txt";
 		this.rutaDestino = "Resultado.txt";
 	}
-	
+
 	public Archivo(String rutaOrigen, String rutaDestino) {
 		this.listaPersonas = new TreeSet<Persona>();
 		this.rutaOrigen = rutaOrigen;
 		this.rutaDestino = rutaDestino;
 	}
-	
+
 	// Metodos de la clase
 	public Boolean verificar(String ruta) {
 		Boolean existe = this.existe(ruta);
@@ -35,16 +35,16 @@ public class Archivo {
 		}
 		return existe;
 	}
-	
+
 	public Boolean existe(String ruta) {
 		File archivo = new File(ruta);
 		return archivo.exists();
 	}
-	
+
 	public Boolean crearAchivo(String ruta) {
 		FileWriter fileWriter;
 		try {
-			fileWriter = new FileWriter(ruta,true);
+			fileWriter = new FileWriter(ruta, true);
 			fileWriter.write("");
 			fileWriter.close();
 			return true;
@@ -53,10 +53,10 @@ public class Archivo {
 		}
 		return false;
 	}
-	
+
 	public void leerLineas() {
 		String ruta = this.rutaOrigen;
-		if(verificar(ruta)) {
+		if (verificar(ruta)) {
 			try {
 				FileReader fileReader = new FileReader(ruta);
 				BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -65,9 +65,9 @@ public class Archivo {
 					if (linea != "") {
 						try {
 							this.listaPersonas.add(Util.convertirEnPersona(linea));
-						}
-						catch (DniInvalido e) {
-							// Aca se puede escribir un mensaje cada vez que encuentre una persona con el dni mal cargado
+						} catch (DniInvalido e) {
+							// Aca se puede escribir un mensaje cada vez
+							// que encuentre una persona con el dni mal cargado.
 							// System.out.println("Se encontro un dni mal cargado.");
 						}
 					}
@@ -75,49 +75,43 @@ public class Archivo {
 				}
 				bufferedReader.close();
 				fileReader.close();
-			}
-			catch (IOException e) {
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
-		else
-		{
+		} else {
 			System.out.println("Archivo no pudo ser creado.");
 		}
 	}
-	
+
 	public void exportarPersona(Persona persona) {
 		String ruta = this.rutaDestino;
-		if(verificar(ruta)) {
+		if (verificar(ruta)) {
 			try {
-				FileWriter fileWriter = new FileWriter(ruta,true);
+				FileWriter fileWriter = new FileWriter(ruta, true);
 				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 				bufferedWriter.write(persona.exportarString());
 				bufferedWriter.close();
 				fileWriter.close();
-			}
-			catch (IOException e) {
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
-		else
-		{
+		} else {
 			System.out.println("Archivo no pudo ser creado.");
 		}
 	}
-	
+
 	public void exportarPersonas(TreeSet<Persona> lista) {
 		Iterator<Persona> listaPersonas = lista.iterator();
 		while (listaPersonas.hasNext()) {
 			this.exportarPersona(listaPersonas.next());
 		}
 	}
-	
+
 	// Getters y Setters
 	protected TreeSet<Persona> getListaPersonas() {
 		return listaPersonas;
 	}
-	
+
 	protected void setListaPersonas(TreeSet<Persona> listaPersonas) {
 		this.listaPersonas = listaPersonas;
 	}

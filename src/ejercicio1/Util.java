@@ -13,30 +13,26 @@ public abstract class Util {
 		String dni = "";
 		for (int i = 0; i < texto.length(); i++) {
 			char caracter = texto.charAt(i);
-			if(caracter == '-') {
+			if (caracter == '-') {
 				if (detectoPrimerGuion) {
 					detectoSegundoGuion = true;
 				}
 				detectoPrimerGuion = true;
-			}
-			else
-			{
-				if(detectoPrimerGuion) {
+			} else {
+				if (detectoPrimerGuion) {
 					if (detectoSegundoGuion) {
 						dni += caracter;
-					}
-					else {
+					} else {
 						apellido += caracter;
 					}
-				}
-				else {
+				} else {
 					nombre += caracter;
-				}				
+				}
 			}
 		}
-		return new Persona(nombre,apellido,dni);
+		return new Persona(nombre, apellido, dni);
 	}
-	
+
 	// Muestra en consola la lista completa de Personas
 	public static void mostrarEnConsola(TreeSet<Persona> lista) {
 		Iterator<Persona> listaPersonas = lista.iterator();

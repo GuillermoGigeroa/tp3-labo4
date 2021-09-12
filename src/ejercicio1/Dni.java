@@ -1,13 +1,13 @@
 package ejercicio1;
 
-public class Dni implements Comparable<Dni>{
+public class Dni implements Comparable<Dni> {
 	private int numero;
-	
+
 	// Constructores
 	public Dni(String numero) throws DniInvalido {
 		this.numero = verificarDniInvalido(numero);
 	}
-	
+
 	// Metodos de la clase
 	protected int getNumero() {
 		return numero;
@@ -16,18 +16,17 @@ public class Dni implements Comparable<Dni>{
 	protected void setNumero(int numero) {
 		this.numero = numero;
 	}
-	
-	public static int verificarDniInvalido(String dni_ingresado) throws DniInvalido{
+
+	public static int verificarDniInvalido(String dni_ingresado) throws DniInvalido {
 		try {
 			return Integer.parseInt(dni_ingresado);
-		}
-		catch (NumberFormatException e) {
-			//e.printStackTrace();
-			//System.out.println("DNI tiene un caracter.");
+		} catch (NumberFormatException e) {
+			// e.printStackTrace();
+			// System.out.println("DNI tiene un caracter.");
 			throw new DniInvalido();
 		}
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
