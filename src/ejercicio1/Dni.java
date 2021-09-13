@@ -4,6 +4,10 @@ public class Dni implements Comparable<Dni> {
 	private int numero;
 
 	// Constructores
+	public Dni() {
+		this.numero = 0;
+	}
+	
 	public Dni(String numero) throws DniInvalido {
 		this.numero = verificarDniInvalido(numero);
 	}
@@ -21,8 +25,6 @@ public class Dni implements Comparable<Dni> {
 		try {
 			return Integer.parseInt(dni_ingresado);
 		} catch (NumberFormatException e) {
-			// e.printStackTrace();
-			// System.out.println("DNI tiene un caracter.");
 			throw new DniInvalido();
 		}
 	}

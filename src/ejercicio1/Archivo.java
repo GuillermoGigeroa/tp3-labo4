@@ -68,7 +68,11 @@ public class Archivo {
 						} catch (DniInvalido e) {
 							// Aca se puede escribir un mensaje cada vez
 							// que encuentre una persona con el dni mal cargado.
-							// System.out.println("Se encontro un dni mal cargado.");
+							// System.out.println("Se encontró un dni mal cargado.");
+						} catch (LineaInvalida e) {
+							// Aca se puede escribir un mensaje cada vez
+							// que encuentre una línea sin el formato solicitado.
+							// System.out.println("Se encontró una línea mal cargada.");
 						}
 					}
 					linea = bufferedReader.readLine();

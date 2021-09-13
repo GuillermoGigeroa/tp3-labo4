@@ -6,10 +6,10 @@ public class Persona implements Comparable<Persona> {
 	private Dni dni;
 
 	// Constructores
-	public Persona() throws DniInvalido {
+	public Persona(){
 		this.nombre = "No cargado";
 		this.apellido = "No cargado";
-		this.dni = new Dni("0");
+		this.dni = new Dni();
 	}
 
 	public Persona(String nombre, String apellido, String dni) throws DniInvalido {
